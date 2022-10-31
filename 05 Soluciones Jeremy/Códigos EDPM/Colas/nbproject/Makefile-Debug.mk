@@ -34,9 +34,7 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES= \
-	${OBJECTDIR}/cola.o \
-	${OBJECTDIR}/main.o
+OBJECTFILES=
 
 
 # C Compiler Flags
@@ -63,15 +61,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/colas.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/colas ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/cola.o: cola.c
+${OBJECTDIR}/cola.c.gch: cola.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cola.o cola.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" cola.c
 
-${OBJECTDIR}/main.o: main.c
+${OBJECTDIR}/main.c.gch: main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" main.c
 
 # Subprojects
 .build-subprojects:

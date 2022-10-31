@@ -34,10 +34,7 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES= \
-	${OBJECTDIR}/lse.o \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/pila.o
+OBJECTFILES=
 
 
 # C Compiler Flags
@@ -64,20 +61,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pilas.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pilas ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/lse.o: lse.c
+${OBJECTDIR}/lse.c.gch: lse.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lse.o lse.c
+	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o "$@" lse.c
 
-${OBJECTDIR}/main.o: main.c
+${OBJECTDIR}/main.c.gch: main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o "$@" main.c
 
-${OBJECTDIR}/pila.o: pila.c
+${OBJECTDIR}/pila.c.gch: pila.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/pila.o pila.c
+	$(COMPILE.c) -O2 -std=c11 -MMD -MP -MF "$@.d" -o "$@" pila.c
 
 # Subprojects
 .build-subprojects:

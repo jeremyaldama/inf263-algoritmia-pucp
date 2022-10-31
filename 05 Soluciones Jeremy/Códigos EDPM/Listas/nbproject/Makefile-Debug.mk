@@ -34,9 +34,7 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES= \
-	${OBJECTDIR}/lse.o \
-	${OBJECTDIR}/main.o
+OBJECTFILES=
 
 
 # C Compiler Flags
@@ -63,15 +61,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/listas.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/listas ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/lse.o: lse.c
+${OBJECTDIR}/lse.c.gch: lse.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lse.o lse.c
+	$(COMPILE.c) -g -std=c11 -MMD -MP -MF "$@.d" -o "$@" lse.c
 
-${OBJECTDIR}/main.o: main.c
+${OBJECTDIR}/main.c.gch: main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -std=c11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -std=c11 -MMD -MP -MF "$@.d" -o "$@" main.c
 
 # Subprojects
 .build-subprojects:
