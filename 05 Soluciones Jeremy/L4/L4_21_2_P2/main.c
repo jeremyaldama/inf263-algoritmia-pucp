@@ -40,9 +40,10 @@ void InOrden(ABB tad){
 }
 void PreOrden(ABB tad){
     if (tad){
-        char letra = ObtenerNombre(tad->dato);
+        /*char letra = ObtenerNombre(tad->dato);
         int precio = ObtenerPrecio(tad->dato);
-        printf("(%c - %d), ", letra, precio);
+        printf("(%c - %d), ", letra, precio);*/
+        printf("%d ", tad->dato);
         PreOrden(tad->hijo_izq);
         PreOrden(tad->hijo_der);
     }
@@ -65,22 +66,28 @@ void mostrarPreciosFiltradorPreOrden(ABB arbol, int
 int main(){
     ABB arbol;
     ConstruirArbol(&arbol);
-    LeerDatos(&arbol);
+    //LeerDatos(&arbol);
 
     /*InsertarRecursivoAVL(&arbol, 220);
     InsertarRecursivoAVL(&arbol, 210);
     InsertarRecursivoAVL(&arbol, 200);*/
 
-    /*InsertarRecursivoAVL(&arbol, 190);
-    InsertarRecursivoAVL(&arbol, 180);
-    InsertarRecursivoAVL(&arbol, 150);
-    InsertarRecursivoAVL(&arbol, 210);
-    InsertarRecursivoAVL(&arbol, 100);
-    InsertarRecursivoAVL(&arbol, 140);
-    InsertarRecursivoAVL(&arbol, 20);
+    InsertarRecursivo(&arbol, 190);
+    InsertarRecursivo(&arbol, 180);
+    InsertarRecursivo(&arbol, 150);
+    InsertarRecursivo(&arbol, 210);
+    InsertarRecursivo(&arbol, 100);
+    InsertarRecursivo(&arbol, 140);
+    InsertarRecursivo(&arbol, 20);
+    InsertarRecursivo(&arbol, 0);
+    InsertarRecursivo(&arbol, 30);
+    InsertarRecursivo(&arbol, 120);
+    InsertarRecursivo(&arbol, 145);
+    InsertarRecursivo(&arbol, 155);
+    InsertarRecursivo(&arbol, 185);
 
     PreOrden(arbol);
-    printf("altua: %d\n", arbol->altura);*/
+    printf("altura: %d\n", arbol->altura);
 
     BalancearArbol(&arbol);
     PreOrden(arbol);

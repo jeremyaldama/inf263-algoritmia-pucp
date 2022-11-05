@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=MinGW-Windows
 CND_DLIB_EXT=dll
-CND_CONF=Release
+CND_CONF=Debug
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -55,31 +55,21 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20206228_ex1_p3.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20171707_lab4_p2.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20206228_ex1_p3.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20171707_lab4_p2.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20206228_ex1_p3 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20171707_lab4_p2 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/cola.c.gch: cola.c
+${OBJECTDIR}/arbol.c.gch: arbol.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o "$@" cola.c
-
-${OBJECTDIR}/funcAux.c.gch: funcAux.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o "$@" funcAux.c
-
-${OBJECTDIR}/lse.c.gch: lse.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o "$@" lse.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" arbol.c
 
 ${OBJECTDIR}/main.c.gch: main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o "$@" main.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" main.c
 
 # Subprojects
 .build-subprojects:
