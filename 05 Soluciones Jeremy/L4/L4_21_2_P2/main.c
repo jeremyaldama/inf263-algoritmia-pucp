@@ -72,9 +72,9 @@ int main(){
     InsertarRecursivoAVL(&arbol, 210);
     InsertarRecursivoAVL(&arbol, 200);*/
 
-    InsertarRecursivo(&arbol, 190);
-    InsertarRecursivo(&arbol, 180);
-    InsertarRecursivo(&arbol, 150);
+    InsertarRecursivoAVL(&arbol, 190);
+    InsertarRecursivoAVL(&arbol, 180);
+    InsertarRecursivoAVL(&arbol, 150);
     InsertarRecursivo(&arbol, 210);
     InsertarRecursivo(&arbol, 100);
     InsertarRecursivo(&arbol, 140);
