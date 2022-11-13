@@ -34,12 +34,12 @@ int change(int n, int* A,int tam){
 void main(){
     int n=10;// quiero cambiar 10 soles
     int A[]={1,2,5};// en monedas de 1,2,5 soles
-//    for(int i=0;i<3;i++){
-//        printf("%d ",A[i]);
-//    }
-//    printf("%d\n");
-//
-//    printf("%d\n ",sizeof A/sizeof *A);
+    /*for(int i=0;i<3;i++){
+        printf("%d ",A[i]);
+    }
+    printf("%d\n");
+
+    printf("%d\n ",sizeof A/sizeof *A);*/
 
 
 
