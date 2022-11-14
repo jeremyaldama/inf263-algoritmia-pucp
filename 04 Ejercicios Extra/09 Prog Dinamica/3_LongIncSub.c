@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int CalculateLongestIncreasingSub(int*LIS, int*sequence, int n){
     //LIS[0] = 1; //el primer numero siempre cuenta como 1
     //recorro sequence uno por uno
