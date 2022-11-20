@@ -1,6 +1,8 @@
 #include <stdio.h>
 
 int MaximizarGanancia(int*ganancia, int n){
+    // 
+
     int dp[n+1];
     dp[0] = 0;
     dp[1] = ganancia[0];
