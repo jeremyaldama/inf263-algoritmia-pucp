@@ -37,7 +37,6 @@ int main(){
         printf("%d ", ultima_sol[i]);
     }
     printf("\n");*/
-
     
     return 0;
 }
