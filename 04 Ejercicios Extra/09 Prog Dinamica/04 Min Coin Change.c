@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/coin-change/
 #include <stdio.h>
 
 int min(int a, int b){
@@ -21,8 +22,8 @@ int dp(int *coin_value, int *memo, int amount, int n){
 }
 
 int main(){
-    int amount = 7;
-    int coin_value[] = {1,5,10,25,50};
+    int amount = 3;
+    int coin_value[] = {2};
     //We want to find the minimun number of coins that we 
     //must to use to represent amount
 

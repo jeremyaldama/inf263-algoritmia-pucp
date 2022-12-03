@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/coin-change-ii/
 #include <stdio.h>
 #define rep(i, n) for(int i=0; i<n; i++)
 
@@ -33,7 +34,7 @@ int dp(int *coins_value, int n, int amount, int table[n][amount]){
 }
 
 int main(){
-    int coins_value[] = {1,5,10,25,50};
+    int coins_value[] = {1,2,5};
     int amount;
     int n = sizeof(coins_value)/sizeof(int);
 

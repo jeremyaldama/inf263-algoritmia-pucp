@@ -27,8 +27,8 @@ void ShowTable(int n, int m, int table[n][m]){
 }
 
 int main(){
-    int weights[] = {2, 1, 3, 2, 4, 1, 3,1, 3, 5, 5,6,7};
-    int values[] = {12, 10, 20, 15, 12,12,11,11,10, 10, 20};
+    int weights[] = {2, 3, 4, 5};
+    int values[] =  {1, 2, 6, 6};
     int max_weight = 6;
     int n = sizeof(weights)/sizeof(int);
     int table[n+1][max_weight+1];//max_weight+1 para la columna de 0's
