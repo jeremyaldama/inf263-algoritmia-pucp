@@ -2,3 +2,5 @@
 01 Algoritmia 2022-1 - Cueva
 #Ejecutables
 *.exe
+#Extraíbles ZIP
+*.zip
