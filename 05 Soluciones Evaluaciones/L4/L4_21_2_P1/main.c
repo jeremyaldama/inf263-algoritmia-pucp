@@ -118,7 +118,7 @@ int main(){
     RecorrerPorAmplitud(arbol);
     int calidad_a_insertar=0, es_posible_insertar;
     while (calidad_a_insertar!=-1){
-        printf("Ingrese la calidad que desea insertar: ");
+        printf("Ingrese la calidad que desea insertarxd: ");
         scanf("%d", &calidad_a_insertar);
         es_posible_insertar = VerificarInsertarCalidad(arbol, calidad_a_insertar);
         printf("Es posible insertar? %d\n", es_posible_insertar);

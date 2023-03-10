@@ -1,15 +1,15 @@
 all: sol
 
 sol: main.o abb.o cola.o
-	gcc -o sol main.o abb.o cola.o
+	gcc main.o abb.o cola.o -o sol
 
-main.o: main.c 	abb.h cola.h
+main.o: main.c
 	gcc -c main.c
 
-cola.o: cola.c cola.h abb.h
+cola.o: cola.c
 	gcc -c cola.c
 
-abb.o: abb.c abb.h
+abb.o: abb.c
 	gcc -c abb.c
 
 clean:
