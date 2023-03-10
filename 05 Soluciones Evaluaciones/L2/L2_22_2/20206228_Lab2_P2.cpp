@@ -20,17 +20,18 @@ void movimientos(){
 	m[7][0] =  1; m[7][1] =  1;				
 }
 
-void detectarMinas(int terreno[][5], char minasDetec[][5], int posX, int posY, int i){
+void detectarMinas(int terreno[][5], char minasDetec[][5], int filas, int columnas,
+					int posX, int posY, int i){
 	//son 8 movimientos, con el indice 8 acaba
 	if (i==8) return;
 	int nuevoX=posX, nuevoY=posY;
 	nuevoX = posX+m[i][0];
 	nuevoY = posY+m[i][1];
-	if (terreno[nuevoY][nuevoX]==1){
+	if (terreno[nuevoY][nuevoX]==1 && nuevoX>=0 && nuevoX<columnas && nuevoY>=0 && nuevoY<filas){
 		minasDetec[nuevoY][nuevoX] = '*';
 	}
 	//recursividad para probar en los siguientes movimientos
-	detectarMinas(terreno, minasDetec, posX, posY, i+1);
+	detectarMinas(terreno, minasDetec, filas, columnas, posX, posY, i+1);
 }
 
 int obtenerCantidadMinimaDePasosInicioFinal(int terreno[][5], char minasDetec[][5], int filas, int columnas, int posX, int posY){
@@ -39,17 +40,17 @@ int obtenerCantidadMinimaDePasosInicioFinal(int terreno[][5], char minasDetec[][
 	int derecha=999999, abajo=999999, diagonal=999999;
 	
 	if (posX+1<columnas && !terreno[posY][posX+1]){
-		detectarMinas(terreno, minasDetec, posX+1, posY, 0);
+		detectarMinas(terreno, minasDetec, filas, columnas, posX+1, posY, 0);
 		derecha = obtenerCantidadMinimaDePasosInicioFinal(terreno, minasDetec,filas, columnas,
 													  posX+1, posY);
 	}
 	if (posY+1<filas && !terreno[posY+1][posX]){
-		detectarMinas(terreno, minasDetec, posX, posY+1, 0);
+		detectarMinas(terreno, minasDetec, filas, columnas, posX, posY+1, 0);
 		abajo = obtenerCantidadMinimaDePasosInicioFinal(terreno, minasDetec, filas, columnas,
 													  posX, posY+1);
 	} 
 	if (posX+1<columnas && posY+1<filas && !terreno[posY+1][posX+1]){
-		detectarMinas(terreno, minasDetec, posX+1, posY+1, 0);
+		detectarMinas(terreno, minasDetec, filas, columnas, posX+1, posY+1, 0);
 		diagonal = obtenerCantidadMinimaDePasosInicioFinal(terreno, minasDetec, filas, columnas,
 													  posX+1, posY+1);	
 	}
