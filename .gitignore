@@ -4,3 +4,6 @@
 *.exe
 *.zip
 *.vscode
+#archivos netbeans
+build
+nbproject
