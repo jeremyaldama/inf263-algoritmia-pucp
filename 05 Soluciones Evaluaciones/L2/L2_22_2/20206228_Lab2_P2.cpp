@@ -50,7 +50,8 @@ int obtener_cantidad_minima_pasos(int terreno[][5], char minas_detectadas[][5],
 	detectar_minas(terreno, minas_detectadas, filas, columnas, pos_x, pos_y, 0);
 
 	int pasos_abajo, pasos_derecha, pasos_diagonal;
-	pasos_abajo = pasos_derecha = pasos_diagonal = NO_PUEDE_LLEGAR;
+	// le damos valores grandes para que escoja al que sí llego a la meta final
+	pasos_abajo = pasos_derecha = pasos_diagonal = 999999;
 	// 1. Verificamos si puede avanzar hacia abajo
 	if (pos_y+1 < filas){
 		if (terreno[pos_y+1][pos_x] == 0){
