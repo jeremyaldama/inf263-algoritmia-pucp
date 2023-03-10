@@ -1,5 +1,8 @@
 //Estrategia: Recursion
-#include <stdio.h>
+#include <iostream>
+#include <vector>
+
+using namespace std;
 #define NO_PUEDE_LLEGAR -1
 
 /*Los movimientos del robot son:
@@ -20,49 +23,89 @@ void movimientos(){
 	m[7][0] =  1; m[7][1] =  1;				
 }
 
-void detectarMinas(int terreno[][5], char minasDetec[][5], int posX, int posY, int i){
+void detectar_minas(int terreno[][5], char minas_detectadas[][5],
+					int filas, int columnas,
+					int pos_x, int pos_y, int i){
 	//son 8 movimientos, con el indice 8 acaba
 	if (i==8) return;
-	int nuevoX=posX, nuevoY=posY;
-	nuevoX = posX+m[i][0];
-	nuevoY = posY+m[i][1];
-	if (terreno[nuevoY][nuevoX]==1){
-		minasDetec[nuevoY][nuevoX] = '*';
+	int nuevo_x = pos_x, nuevo_y = pos_y;
+
+	nuevo_x = pos_x + m[i][0];
+	nuevo_y = pos_y + m[i][1];
+
+	if (terreno[nuevo_y][nuevo_x]==1 && filas > nuevo_y && columnas > nuevo_x){
+		minas_detectadas[nuevo_y][nuevo_x] = '*';
 	}
 	//recursividad para probar en los siguientes movimientos
-	detectarMinas(terreno, minasDetec, posX, posY, i+1);
+	detectar_minas(terreno, minas_detectadas, filas, columnas, pos_x, pos_y, i+1);
 }
 
-int obtenerCantidadMinimaDePasosInicioFinal(int terreno[][5], char minasDetec[][5], int filas, int columnas, int posX, int posY){
-	if (posX==columnas-1 && posY==filas-1) return 0;//llegada
-	
-	int derecha=999999, abajo=999999, diagonal=999999;
-	
-	if (posX+1<columnas && !terreno[posY][posX+1]){
-		detectarMinas(terreno, minasDetec, posX+1, posY, 0);
-		derecha = obtenerCantidadMinimaDePasosInicioFinal(terreno, minasDetec,filas, columnas,
-													  posX+1, posY);
+int obtener_cantidad_minima_pasos(int terreno[][5], char minas_detectadas[][5],
+								int filas, int columnas, int pos_x, int pos_y){
+	// 0. Verificamos si ya hemos llegado a la meta
+	if (pos_x == columnas-1 && pos_y == filas-1){
+		return 0;
 	}
-	if (posY+1<filas && !terreno[posY+1][posX]){
-		detectarMinas(terreno, minasDetec, posX, posY+1, 0);
-		abajo = obtenerCantidadMinimaDePasosInicioFinal(terreno, minasDetec, filas, columnas,
-													  posX, posY+1);
-	} 
-	if (posX+1<columnas && posY+1<filas && !terreno[posY+1][posX+1]){
-		detectarMinas(terreno, minasDetec, posX+1, posY+1, 0);
-		diagonal = obtenerCantidadMinimaDePasosInicioFinal(terreno, minasDetec, filas, columnas,
-													  posX+1, posY+1);	
+
+	detectar_minas(terreno, minas_detectadas, filas, columnas, pos_x, pos_y, 0);
+
+	int pasos_abajo, pasos_derecha, pasos_diagonal;
+	pasos_abajo = pasos_derecha = pasos_diagonal = NO_PUEDE_LLEGAR;
+	// 1. Verificamos si puede avanzar hacia abajo
+	if (pos_y+1 < filas){
+		if (terreno[pos_y+1][pos_x] == 0){
+			pasos_abajo = obtener_cantidad_minima_pasos(terreno, minas_detectadas,
+												filas, columnas, pos_x, pos_y+1) + 1;
+		}
 	}
-	//con recursividad se obtiene los pasos de derecha, abajo y diagonal anteriores											  
-	if (derecha<abajo && derecha<diagonal) return 1+derecha;
-	else if (abajo<derecha && abajo<diagonal) return 1+abajo;
-	else if (diagonal<=derecha && diagonal<=abajo)return 1+diagonal;
-	else return NO_PUEDE_LLEGAR;
+	// 2. Verificamos si puede avanzar en diagonal
+	if (pos_y+1 < filas && pos_x+1 < columnas){
+		if (terreno[pos_y+1][pos_x+1] == 0){
+			pasos_diagonal = obtener_cantidad_minima_pasos(terreno, minas_detectadas,
+												filas, columnas, pos_x+1, pos_y+1) + 1;
+		}
+	}
+	// 3. Verificamos si puede avanzar hacia la derecha
+	if (pos_x+1 < columnas){
+		if (terreno[pos_y][pos_x+1] == 0){
+			pasos_derecha = obtener_cantidad_minima_pasos(terreno, minas_detectadas,
+												filas, columnas, pos_x+1, pos_y) + 1;
+		}
+	}
+
+	// 4. Verificamos si ya llego al final
+	if (pos_x == columnas-1 && pos_y == filas-1){
+		return 0;
+	}
+
+	if (pasos_abajo == NO_PUEDE_LLEGAR && pasos_derecha == NO_PUEDE_LLEGAR && pasos_diagonal == NO_PUEDE_LLEGAR){
+		return NO_PUEDE_LLEGAR;
+	}
+	else if (pasos_abajo == NO_PUEDE_LLEGAR && pasos_derecha == NO_PUEDE_LLEGAR){
+		return pasos_diagonal;
+	}
+	else if (pasos_abajo == NO_PUEDE_LLEGAR && pasos_diagonal == NO_PUEDE_LLEGAR){
+		return pasos_derecha;
+	}
+	else if (pasos_derecha == NO_PUEDE_LLEGAR && pasos_diagonal == NO_PUEDE_LLEGAR){
+		return pasos_abajo;
+	}
+	else if (pasos_abajo == NO_PUEDE_LLEGAR){
+		return min(pasos_derecha, pasos_diagonal);
+	}
+	else if (pasos_derecha == NO_PUEDE_LLEGAR){
+		return min(pasos_abajo, pasos_diagonal);
+	}
+	else if (pasos_diagonal == NO_PUEDE_LLEGAR){
+		return min(pasos_abajo, pasos_derecha);
+	}
+	else{
+		return min(pasos_abajo, min(pasos_derecha, pasos_diagonal));
+	}
 }
 
 int main(){
 	int columnas=5, filas=9;
-	int numMinPasos;
 							//0 significa terreno libre
 							//1 significa que hay mina en el terreno
 	int terreno[][5] = {{0,0,0,0,1},
@@ -75,7 +118,7 @@ int main(){
 						{1,1,1,1,0},
 						{1,0,0,0,0}};
 
-	char minasDetectadas[][5] = {{' ',' ',' ',' ',' '},
+	char minas_detectadas[][5] = {{' ',' ',' ',' ',' '},
 							{' ',' ',' ',' ',' '},
 							{' ',' ',' ',' ',' '},
 							{' ',' ',' ',' ',' '},
@@ -86,25 +129,24 @@ int main(){
 							{' ',' ',' ',' ',' '}};
 	movimientos();
 					
-	numMinPasos = obtenerCantidadMinimaDePasosInicioFinal(terreno, minasDetectadas, filas, columnas, 0, 0);
-	
-	
-	if (numMinPasos==NO_PUEDE_LLEGAR){
-		printf("No es posible llegar al punto final\n");
-	}
-	else{
-		printf("Numero minimo de pasos del punto inicial al punto final: %d\n", numMinPasos);
-	}
-	
-	int i,j;
-	printf("Minas detectadas:\n");
-	printf("-------------------\n");
-	for (i=0; i<filas; i++){
-		for (j=0; j<columnas; j++){
-			printf("|%c| ", minasDetectadas[i][j]);
+	for (int i=0; i<filas; i++){
+		for (int j=0; j<columnas; j++){
+			cout << terreno[i][j] << " ";
 		}
-		printf("\n");
-		printf("-------------------\n");
+		cout << endl;
+	}
+
+	int pasos_minimos = obtener_cantidad_minima_pasos(terreno, minas_detectadas, filas, columnas, 0, 0);
+	cout<<"Pasos minimos: "<<pasos_minimos<<endl;
+	
+	cout<<"-----------"<<endl;
+	for (int i=0; i<filas; i++){
+		cout<<"|";
+		for (int j=0; j<columnas; j++){
+			cout << minas_detectadas[i][j] << "|";
+		}
+		cout << endl;
+		cout<<"-----------"<<endl;
 	}
 	return 0;
 }
