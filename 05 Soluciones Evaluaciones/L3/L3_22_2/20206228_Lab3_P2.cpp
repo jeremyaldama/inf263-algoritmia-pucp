@@ -1,4 +1,4 @@
-//T�cnica aplicada: Divide y Vencer�s
+//Tecnica aplicada: Divide y Venceras
 #include <iostream>
 
 using namespace std;
