@@ -4,22 +4,23 @@
 
 using namespace std;
 
-
-void colocar_en_anaquel(vector<vector<int>> &anaquel, int columna,
+int colocar_en_anaquel(vector<vector<int>> &anaquel, int columna, int fila,
 				 	int productos, int productos_fila_1, int fila_i, int col_i){
 	if (productos == 0){
-		return;
+		return 1;
+	}
+	else if (fila_i == fila){
+		return 0;
 	}
 
 	for (int j = col_i; j < col_i + productos_fila_1; j++){
 		if (anaquel[fila_i][j] == 0 && productos > 0){
 			anaquel[fila_i][j] = 5;
 			productos--;
-			cout<<productos<<" ";
 		}
 	}
 	
-	colocar_en_anaquel(anaquel, columna, productos, 
+	colocar_en_anaquel(anaquel, columna, fila, productos, 
 					productos_fila_1 + 2 > columna ? columna : productos_fila_1 + 2,
 					fila_i + 1,
 					col_i - 1 > 0 ? col_i - 1 : 0);
@@ -74,9 +75,9 @@ int main(){
 
 	int productos_fila_1 = columna % 2 == 0 ? 2 : 1;
 	int col_i = productos_fila_1 == 1? columna/2 : columna/2 - 1;
-	cout<<col_i<<endl;
+	cout<<endl;
 
-	colocar_en_anaquel(anaquel, columna, productos, productos_fila_1, 0, col_i);
+	int es_posible = colocar_en_anaquel(anaquel, columna, fila, productos, productos_fila_1, 0, col_i);
 	
 	cout<<"Anaquel con productos"<<endl;
 
@@ -85,5 +86,12 @@ int main(){
 			cout<<anaquel[i][j]<<" ";
 		}
 		cout<<endl;
+	}
+
+	if (es_posible){
+		cout<<"Si es posible ordenar los productos en el anaquel."<<endl;
+	}
+	else{
+		cout<<"No es posible ordenar los productos en el anaquel."<<endl;
 	}
 }
