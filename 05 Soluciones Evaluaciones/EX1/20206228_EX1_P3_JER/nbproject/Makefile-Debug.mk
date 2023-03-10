@@ -34,11 +34,7 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES= \
-	${OBJECTDIR}/cola.o \
-	${OBJECTDIR}/funcAux.o \
-	${OBJECTDIR}/lse.o \
-	${OBJECTDIR}/main.o
+OBJECTFILES=
 
 
 # C Compiler Flags
@@ -65,25 +61,25 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20206228_ex1_p3_jer.exe: ${OBJECTFILE
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/20206228_ex1_p3_jer ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/cola.o: cola.c
+${OBJECTDIR}/cola.c.gch: cola.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cola.o cola.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" cola.c
 
-${OBJECTDIR}/funcAux.o: funcAux.c
+${OBJECTDIR}/funcAux.c.gch: funcAux.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/funcAux.o funcAux.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" funcAux.c
 
-${OBJECTDIR}/lse.o: lse.c
+${OBJECTDIR}/lse.c.gch: lse.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lse.o lse.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" lse.c
 
-${OBJECTDIR}/main.o: main.c
+${OBJECTDIR}/main.c.gch: main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o "$@" main.c
 
 # Subprojects
 .build-subprojects:
