@@ -7,3 +7,5 @@
 #archivos netbeans
 build
 nbproject
+*.dep.inc
+Makefile
