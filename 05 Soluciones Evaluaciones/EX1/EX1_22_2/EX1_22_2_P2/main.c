@@ -1,15 +1,8 @@
-/* 
- * File:   main.c
- * Author: Danie
- *
- * Created on 15 de octubre de 2022, 16:00
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "pila.h"
 
-int main(int argc, char** argv) {
+int main() {
     
     int frecuencia[]={1,2,1,4,5,6,4,5,2,2,1};
     //int frecuencia[]={1,2,5,6,5,5,5,4,3,3,2};
@@ -61,6 +54,5 @@ int main(int argc, char** argv) {
 
     printf("Frecuencia maxima = %d\n", max_frecuencia);
     printf("Duracion = %d\n", tiempo_total);
-    return (EXIT_SUCCESS);
+    return 0;
 }
-
