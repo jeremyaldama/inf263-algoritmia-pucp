@@ -1,14 +1,10 @@
-/* 
- * File:   main.c
- * Author: Jeremy Aldama 20206228
- *
- * Created on 15 de octubre de 2022, 9:34
- */
-
-#include <stdio.h>
-#include <stdlib.h>
-#define DIAS 5
+#include <iostream>
+#include <fstream>
+#include <iomanip>
 #include "lse.h"
+#define DIAS 5
+
+using namespace std;
 
 int agrupar(int hora, int sucursal, int dia){
     //suponiendo que las sucursales sean < a 100
@@ -94,32 +90,35 @@ void MergeLists(Lista*lista1, Lista*lista2){
     }
 }
 
-int main(int argc, char** argv) {
-    FILE*arch = fopen("datos.txt","r");
+int main() {
+    ifstream arch("datos.txt", ios::in);
+
     Lista lista[DIAS];
     
     int hora, sucursal, clave;
     
     for (int i=0; i<DIAS; i++){
         construir(&lista[i]);
-        
+        // leer linea hasta el salto de linea
         while (1){
-            fscanf(arch, "%d", &hora);
-            if (feof(arch)) break;
-            fscanf(arch, "%d", &sucursal);
-            //i es el dia
+            arch >> hora >> sucursal;
             clave = agrupar(hora, sucursal, i);
             insertar_final(&lista[i], clave);
-            if (fgetc(arch)=='\n') break;
+            if (arch.peek()=='\n') break;
         }
-        
     }
     
+    //imprimir
+    for (int i=0; i<DIAS; i++){
+        cout<<"Lista "<<i<<": ";
+        imprimir(lista[i]);
+    }
     MergeLists(&lista[0], &lista[1]);
     MergeLists(&lista[0], &lista[2]);
     MergeLists(&lista[0], &lista[3]);
     MergeLists(&lista[0], &lista[4]);
     
     imprimirListaFinal(lista[0]);
-    return (EXIT_SUCCESS);
+
+    return 0;
 }

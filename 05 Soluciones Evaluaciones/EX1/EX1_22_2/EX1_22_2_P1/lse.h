@@ -1,10 +1,3 @@
-/* 
- * File:   lse.h
- * Author: cueva.r
- *
- * Created on 24 de agosto de 2022, 09:00 AM
- */
-
 #ifndef LSE_H
 #define LSE_H
 
@@ -32,4 +25,5 @@ void Elimina_nodo(Lista *,Elemento );
 int es_lista_vacia(Lista );
 Elemento retorna_cabeza(Lista tad);
 void elimina_cabeza(Lista *tad);
-#endif /* LSE_H */
+
+#endif

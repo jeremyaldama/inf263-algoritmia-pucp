@@ -1,10 +1,3 @@
-
-/* 
- * File:   lse.c
- * Author: cueva.r
- * 
- * Created on 24 de agosto de 2022, 09:00 AM
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include "lse.h"
@@ -177,5 +170,3 @@ void elimina_cabeza(Lista *tad){
     free(aux);
     tad->longitud --;
 }
-
-

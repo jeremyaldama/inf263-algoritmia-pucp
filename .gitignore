@@ -2,6 +2,7 @@
 01 Algoritmia 2022-1 - Cueva
 #Ejecutables
 *.exe
+*.o
 *.zip
 *.vscode
 #archivos netbeans
