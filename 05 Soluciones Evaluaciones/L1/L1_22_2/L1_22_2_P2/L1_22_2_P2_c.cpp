@@ -1,24 +1,27 @@
 //FUERZA BRUTA
-#include <stdio.h>
+#include <iostream>
+#include <fstream>
 #include <math.h>
 #include <string.h>
 
-void cargaBin(int* arreglo, int numero, int n) {
+using namespace std;
+
+void carga_bin(int* arreglo, int numero, int n) {
 	int bit;
 	for (bit = 0; bit < n; bit++) {
-		arreglo[n - 1 - bit] = numero & 1;//si los dos bits son 1 -> es 1
-		numero >>= 1;//muevo 1 bit a la izquierda
+		arreglo[n - 1 - bit] = numero & 1;
+		numero >>= 1;
 	}
 }
 
 int main(){
-	FILE*arch = fopen("datos_P2.txt","r");
+	ifstream arch("datos_P2.txt");
 	char letra[10], palabra[10];
 	int i=0;
-	fscanf(arch,"%s",palabra);
+	arch>>palabra;
 	while (1){
-		fscanf(arch," %c",&letra[i]);
-		if (feof(arch)) break;
+		arch>>letra[i];
+		if (arch.eof()) break;
 		i++;
 	}
 	
@@ -30,7 +33,7 @@ int main(){
 	int esCorrecta;
 	
 	for (i=0; i<comb; i++){
-		cargaBin(cromo, i, n);
+		carga_bin(cromo, i, n);
 		k=0;
 		for (j=0; j<n; j++) palabraFormada[j] = 0;
 		esCorrecta=1;
@@ -42,19 +45,13 @@ int main(){
 			}
 		}
 		
-		//el siguiente if es para obtener todas las palabras gol, pero que
-		//están con las letras desordenadas, no necesariamente G O L tal cual
-		//puede ser O G L, etc
 		if (k==nPal){
-			for (j=0; j<nPal; j++){//recorro cada letra de la palabra GOL
-				for (k=0; k<nPal; k++){//recorro cada letra de la palabra que formé
+			for (j=0; j<nPal; j++){
+				for (k=0; k<nPal; k++){
 					if (palabra[j] == palabraFormada[k]){
 						break;
 					}
 				}
-				//si el k es >= a nPal es porque recorrió todas las letras y no
-				//encontró ninguna coincidencia, por lo tanto no hizo break y
-				//las letras no coinciden
 				if (k>=nPal) esCorrecta=0;
 			}
 		}
