@@ -49,7 +49,6 @@ void mostrarCola( Cola C )
         pNodo = C.cabeza;
         while ( pNodo != NULL )
         {
-            
             printf("%d ", pNodo->elemento );
             pNodo = pNodo->sig;
             if (pNodo!=NULL){

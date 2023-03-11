@@ -1,10 +1,3 @@
-/* 
- * File:   main.c
- * Author: Danie
- *
- * Created on 15 de octubre de 2022, 8:02
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "cola.h"
@@ -22,7 +15,6 @@ void eliminarYEncolarMultiplos(int numero,int max, Nodo *rec, Lista*lista, Cola 
         rec = lista->cabeza;
     }
     eliminarYEncolarMultiplos(numero, max, rec->sig, lista, colaPares);
-    
 }
 
 void algoritmo(int n, Nodo *rec, Lista* lista_numeros){
@@ -59,7 +51,7 @@ Lista obtenerListaNumerosNaturales(int numero_maximo){
     return aux;
 }
 
-int main(int argc, char** argv) {
+int main() {
     int n;
     printf("Ingrese el numero n maximo: ");
     scanf("%d", &n);
@@ -70,5 +62,5 @@ int main(int argc, char** argv) {
     
     algoritmo(n, lista_numeros.cabeza, &lista_numeros);
     
-    return (EXIT_SUCCESS);
+    return 0;
 }

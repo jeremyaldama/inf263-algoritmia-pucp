@@ -92,7 +92,7 @@ void insertar_final(Lista *tad,Elemento dato){
 
 
 void imprime_elemento(Elemento dato){
-    printf("%d",dato);
+    printf("%d -> ",dato);
     
 }
 void imprimir(Lista tad){
