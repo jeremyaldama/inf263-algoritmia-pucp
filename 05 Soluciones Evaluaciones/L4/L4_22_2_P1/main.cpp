@@ -9,6 +9,7 @@
 #include <iomanip>
 
 using namespace std;
+
 typedef struct nodo{
     struct nodo *i;
     int bit;
