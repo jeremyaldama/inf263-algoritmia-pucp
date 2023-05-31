@@ -9,9 +9,6 @@
 #include <iomanip>
 
 using namespace std;
-
-typedef int ElementoArbol;
-
 typedef struct nodo{
     struct nodo *i;
     int bit;
