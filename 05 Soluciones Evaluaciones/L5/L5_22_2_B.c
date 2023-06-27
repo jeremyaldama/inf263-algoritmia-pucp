@@ -137,7 +137,7 @@ void BackTracking(int x, int y){
                 if (tabla[x][j]==num_rectangulo) tabla[x][j] = 0;
             }
         }
-        //vertical arriba
+        //vertical arriba 
         else{
             x += (c-1);
             num_rectangulo--;
